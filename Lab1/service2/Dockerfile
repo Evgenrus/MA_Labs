@@ -10,6 +10,6 @@ COPY service2/*.go ./
 
 RUN go build -o /service2
 
-EXPOSE 8082
+EXPOSE 8084
 
 CMD [ "/service2" ]
