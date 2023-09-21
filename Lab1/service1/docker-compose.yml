@@ -1,13 +1,13 @@
 version: '3'
 
 services:
-  nginx:
-    image: nginx:latest
-    container_name: nginx_lab1
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+  service1:
+    container_name: service1
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "80:80"
+      - "8081:8081"
     networks:
       - lab1_networks
 

@@ -2,11 +2,11 @@ FROM golang:1.21-alpine
 
 WORKDIR /app
 
-COPY service2/go.mod ./
+COPY go.mod ./
 
 RUN go mod download
 
-COPY service2/*.go ./
+COPY *.go ./
 
 RUN go build -o /service2
 
