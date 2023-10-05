@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.10.7-management
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    restart: always
+    volumes:
+      - ./rabbitmq:/var/lib/rabbitmq
+
+  service1:
+    container_name: service1
+    build:
+      context: .
+      dockerfile: service1/Dockerfile
+    restart: always
+    links:
+      - rabbitmq
+    depends_on:
+      - rabbitmq
+    ports:
+      - "8081:8081"
+
+  service2:
+    container_name: service2
+    build:
+      context: .
+      dockerfile: service2/Dockerfile
+    restart: always
+    links:
+      - rabbitmq
+    depends_on:
+      - rabbitmq
+      - service1
+    ports:
+      - "8084:8084"
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_lab1
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    links:
+      - service1
+      - service2
+    ports:
+      - "80:80"
