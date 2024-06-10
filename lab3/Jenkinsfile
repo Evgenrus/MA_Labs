@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Build Docker Image') {
             steps {
-                script {
-                    dir 'lab3'
+                sh 'pwd'
+                dir('lab3') {
                     sh 'docker compose up --build -f docker-compose.yml'
                 }
             }
