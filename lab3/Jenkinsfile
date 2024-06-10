@@ -6,7 +6,7 @@ pipeline {
             steps {
                 sh 'pwd'
                 dir('lab3') {
-                    sh 'docker compose up --build -f docker-compose.yml'
+                    sh 'docker compose up --build'
                 }
             }
         }
