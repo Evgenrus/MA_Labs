@@ -5,6 +5,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
+                    cd 'lab3'
                     sh 'docker compose up --build -f docker-compose.yml'
                 }
             }
