@@ -5,6 +5,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh 'pwd'
+                sh 'whoami'
                 dir('lab3') {
                     sh 'docker compose up --build'
                 }
